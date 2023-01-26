@@ -1,0 +1,37 @@
+quarkus:
+  application:
+    name: quarkus-java17-reactive-example
+  hibernate-orm:
+    physical-naming-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+  log:
+    console:
+      format: "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%X{traceId},%X{spanId},%X{parentId}] (%t) [%c{3.}] %s%e%n"
+  default-locale: en-US
+  locales: en-US,es-AR,es-ES,fr-FR
+
+"%dev":
+  quarkus:
+    banner:
+      enabled: false
+    test:
+      continuous-testing: disabled
+    datasource:
+      db-kind: postgresql
+      username: postgres
+      password: password
+      reactive:
+        url: vertx-reactive:postgresql://localhost:5432/postgres
+        max-size: 10
+      devservices:
+        enabled: false
+    opentelemetry:
+      tracer:
+        exporter:
+          otlp:
+            enabled: false
+    hibernate-orm:
+      database:
+        generation: update
+      log:
+        sql: true
+        format-sql: false
