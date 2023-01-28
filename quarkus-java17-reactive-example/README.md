@@ -1,4 +1,4 @@
-# seed Project
+# quarkus-java17-reactive-example Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -43,7 +43,7 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./build/seed-1.0.0-SNAPSHOT-runner`
+You can then execute your native executable with: `./build/quarkus-java17-reactive-example-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
 
@@ -87,4 +87,14 @@ Monitor your application's health using SmallRye Health
 
 ```shell
 docker run --rm -it --name postgres -e POSTGRES_PASSWORD=password -p 5432:5432 postgres:15-alpine
+```
+
+## Run generated native image
+
+```shell script
+QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION=update \
+  ./build/quarkus-java17-reactive-example-1.0.0-SNAPSHOT-runner \
+  -Dquarkus.datasource.reactive.url=vertx-reactive:postgresql://localhost:5432/postgres \
+  -Dquarkus.datasource.username=postgres \
+  -Dquarkus.datasource.password=password
 ```

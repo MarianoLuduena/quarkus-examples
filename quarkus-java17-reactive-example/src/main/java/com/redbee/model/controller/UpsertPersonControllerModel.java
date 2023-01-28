@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.redbee.domain.Person;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@RegisterForReflection
 public class UpsertPersonControllerModel {
 
     @Pattern(regexp = "^(ID_NUMBER|PASSPORT)$")
